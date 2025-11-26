@@ -44,11 +44,16 @@ const experiences = [
 export default function Experience() {
     return (
         <SectionWrapper id="experience" className="grid-pattern">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-                Work <span className="gradient-text">Experience</span>
-            </h2>
+            <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                    Work <span className="gradient-text">Experience</span>
+                </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                    My professional journey and contributions
+                </p>
+            </div>
 
-            <div className="relative border-l-2 border-primary/30 ml-4 md:ml-10 space-y-12">
+            <div className="max-w-4xl mx-auto relative border-l-2 border-primary/30 ml-4 md:ml-8 space-y-8 md:space-y-10">
                 {experiences.map((exp, index) => (
                     <motion.div
                         key={index}
@@ -56,22 +61,22 @@ export default function Experience() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
-                        className="relative pl-8 md:pl-12 group"
+                        className="relative pl-6 md:pl-12 group"
                     >
                         {/* Enhanced Timeline Dot */}
                         <div className="absolute -left-[9px] top-2 w-4 h-4 rounded-full bg-primary ring-4 ring-background group-hover:scale-125 transition-transform glow" />
 
-                        <div className="glass rounded-2xl p-6 hover:scale-[1.02] transition-all">
-                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                                <h3 className="text-xl font-semibold text-foreground">{exp.role}</h3>
-                                <span className="text-sm text-secondary-foreground font-medium bg-secondary/20 px-3 py-1 rounded-full w-fit mt-2 sm:mt-0">
+                        <div className="glass rounded-2xl p-4 sm:p-6 hover:scale-[1.02] transition-all">
+                            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
+                                <h3 className="text-lg sm:text-xl font-semibold text-foreground pr-2">{exp.role}</h3>
+                                <span className="text-xs sm:text-sm text-secondary-foreground font-medium bg-secondary/20 px-3 py-1 rounded-full w-fit whitespace-nowrap">
                                     {exp.period}
                                 </span>
                             </div>
 
-                            <div className="text-base text-primary font-semibold mb-2">{exp.company}</div>
-                            <div className="text-sm text-muted-foreground mb-4">{exp.location}</div>
-                            <p className="text-foreground/90 leading-relaxed">
+                            <div className="text-sm sm:text-base text-primary font-semibold mb-2">{exp.company}</div>
+                            <div className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">{exp.location}</div>
+                            <p className="text-sm sm:text-base text-foreground/90 leading-relaxed">
                                 {exp.description}
                             </p>
                         </div>

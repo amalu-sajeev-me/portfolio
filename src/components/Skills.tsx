@@ -20,12 +20,17 @@ const skills = {
 
 export default function Skills() {
     return (
-        <SectionWrapper id="skills" className="grid-pattern my-20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-                Technical <span className="gradient-text">Skills</span>
-            </h2>
+        <SectionWrapper id="skills" className="grid-pattern">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                    Technical <span className="gradient-text">Skills</span>
+                </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                    Technologies and tools I work with
+                </p>
+            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                 {Object.entries(skills).map(([category, items], index) => (
                     <motion.div
                         key={category}

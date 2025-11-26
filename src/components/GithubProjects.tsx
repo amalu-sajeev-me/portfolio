@@ -7,7 +7,6 @@ interface GithubProjectsProps {
 }
 
 export default async function GithubProjects({ username }: GithubProjectsProps) {
-    console.log('[GithubProjects] Fetching repos for:', username);
     const repos = await getPinnedRepos(username);
     console.log('[GithubProjects] Received repos:', repos.length, repos);
 
@@ -21,16 +20,11 @@ export default async function GithubProjects({ username }: GithubProjectsProps) 
     }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {repos.map((repo, index) => (
                 <div
                     key={repo.name}
-                    className="group flex flex-col h-full glass rounded-2xl p-6 hover:scale-[1.02] transition-all glow hover:glow-secondary"
-                    style={{
-                        animationDelay: `${index * 0.1}s`,
-                        animation: 'fadeInUp 0.5s ease-out forwards',
-                        opacity: 0
-                    }}
+                    className="group flex flex-col h-full glass rounded-2xl p-4 sm:p-6 hover:scale-[1.02] transition-all glow hover:glow-secondary"
                 >
                     <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-2 text-primary">
@@ -46,27 +40,23 @@ export default async function GithubProjects({ username }: GithubProjectsProps) 
                         </Link>
                     </div>
 
-                    <p className="text-sm text-foreground/80 mb-6 flex-grow line-clamp-3">
+                    <p className="text-sm text-foreground/80 mb-6 grow line-clamp-3">
                         {repo.description || "No description available"}
                     </p>
 
-                    <div className="flex items-center justify-between text-xs text-muted-foreground mt-auto pt-4 border-t border-border">
-                        <div className="flex items-center gap-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 text-xs text-muted-foreground mt-auto pt-4 border-t border-border">
+                        <div className="flex items-center gap-3 sm:gap-4">
                             {repo.primaryLanguage && (
                                 <div className="flex items-center gap-1.5">
                                     <span
-                                        className="w-2.5 h-2.5 rounded-full"
-                                        style={{ 
-                                            backgroundColor: repo.primaryLanguage.color,
-                                            boxShadow: `0 0 8px ${repo.primaryLanguage.color}40`
-                                        }}
+                                        className="w-2.5 h-2.5 rounded-full shrink-0 bg-primary"
                                     />
-                                    <span>{repo.primaryLanguage.name}</span>
+                                    <span className="truncate">{repo.primaryLanguage.name}</span>
                                 </div>
                             )}
                         </div>
 
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3 sm:gap-4">
                             <div className="flex items-center gap-1 hover:text-primary transition-colors">
                                 <Star className="w-3.5 h-3.5" />
                                 <span>{repo.stargazerCount}</span>

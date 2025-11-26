@@ -1,14 +1,11 @@
 "use client";
 
-import { useRef, useState, Suspense } from "react";
+import { useRef, Suspense } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Points, PointMaterial, Sphere } from "@react-three/drei";
-// @ts-ignore
-import * as random from "maath/random/dist/maath-random.esm";
+import { Stars as DreiStars, Sphere } from "@react-three/drei";
 
-function Stars(props: any) {
+function AnimatedStars() {
     const ref = useRef<any>(null);
-    const [sphere] = useState(() => random.inSphere(new Float32Array(5000), { radius: 1.5 }));
 
     useFrame((state, delta) => {
         if (ref.current) {
@@ -18,16 +15,16 @@ function Stars(props: any) {
     });
 
     return (
-        <group rotation={[0, 0, Math.PI / 4]}>
-            <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
-                <PointMaterial
-                    transparent
-                    color="#6366f1"
-                    size={0.002}
-                    sizeAttenuation={true}
-                    depthWrite={false}
-                />
-            </Points>
+        <group ref={ref} rotation={[0, 0, Math.PI / 4]}>
+            <DreiStars 
+                radius={100} 
+                depth={50} 
+                count={5000} 
+                factor={4} 
+                saturation={0} 
+                fade 
+                speed={1}
+            />
         </group>
     );
 }
@@ -108,7 +105,7 @@ export default function Background3D() {
             <Canvas camera={{ position: [0, 0, 1], fov: 75 }}>
                 <Suspense fallback={null}>
                     <ambientLight intensity={0.5} />
-                    <Stars />
+                    <AnimatedStars />
                     <FloatingOrbs />
                     <MouseParallax />
                 </Suspense>

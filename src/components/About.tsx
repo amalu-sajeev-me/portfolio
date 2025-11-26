@@ -12,20 +12,22 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="max-w-4xl mx-auto"
+                className="max-w-5xl mx-auto space-y-12"
             >
-                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
-                    About <span className="gradient-text">Me</span>
-                </h2>
+                <div className="text-center">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                        About <span className="gradient-text">Me</span>
+                    </h2>
+                </div>
 
-                <div className="glass rounded-3xl p-8 glow mb-8">
-                    <p className="text-lg text-foreground leading-relaxed">
+                <div className="glass rounded-3xl p-8 md:p-10 glow">
+                    <p className="text-base md:text-lg text-foreground leading-relaxed text-center md:text-left">
                         Experienced full-stack developer with a proven track record as a founding engineer, specializing in architecting scalable, AI-driven regulatory writing systems. Skilled in modern JavaScript frameworks, AWS cloud services, and real-time data processing, I contribute to product strategy and technical vision for startup growth. Adept at leading development efforts from concept to deployment, with strong communication and collaboration skills for dynamic, innovative teams.
                     </p>
                 </div>
 
                 {/* Highlight Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}

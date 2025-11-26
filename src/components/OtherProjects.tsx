@@ -36,7 +36,7 @@ const projects = [
 
 export default function OtherProjects() {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {projects.map((project, index) => (
                 <motion.div
                     key={index}
@@ -47,11 +47,11 @@ export default function OtherProjects() {
                     whileHover={{ scale: 1.02 }}
                     className="group relative glass rounded-3xl overflow-hidden hover:glow transition-all"
                 >
-                    <div className="p-6 flex flex-col h-full relative z-10">
-                        <h3 className="text-xl font-bold mb-2 gradient-text">
+                    <div className="p-4 sm:p-6 flex flex-col h-full relative z-10">
+                        <h3 className="text-lg sm:text-xl font-bold mb-2 gradient-text">
                             {project.title}
                         </h3>
-                        <p className="text-foreground/80 mb-4 flex-grow">
+                        <p className="text-sm sm:text-base text-foreground/80 mb-4 grow leading-relaxed">
                             {project.description}
                         </p>
 
@@ -85,7 +85,7 @@ export default function OtherProjects() {
                     </div>
                     
                     {/* Gradient overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </motion.div>
             ))}
         </div>

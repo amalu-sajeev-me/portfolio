@@ -98,11 +98,39 @@ body {
   background: var(--secondary);
 }
 
+/* Thin scrollbar utility classes */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thumb-primary\/20::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+.scrollbar-thumb-primary\/40::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.4);
+}
+
+.scrollbar-track-transparent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Firefox scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.2) transparent;
+}
+
+.scrollbar-thin:hover {
+  scrollbar-color: rgba(99, 102, 241, 0.4) transparent;
+}
+
 /* Glassmorphism utility */
 .glass {
   background: rgba(23, 23, 23, 0.7);
-  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -164,6 +192,7 @@ body {
   background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   animation: gradient-rotate 3s ease infinite;
   background-size: 200% 200%;
@@ -176,6 +205,11 @@ body {
 
 .magnetic-btn:hover {
   transform: scale(1.05);
+}
+
+/* Dynamic background colors for language indicators and contribution graph */
+[data-color] {
+  background-color: var(--dynamic-bg-color);
 }
 
 /* Fade in up animation */

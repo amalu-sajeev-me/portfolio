@@ -7,31 +7,50 @@ import OtherProjects from "./OtherProjects";
 export default function Projects() {
     return (
         <SectionWrapper id="projects">
-            <div className="mb-12">
-                <Suspense fallback={<div className="text-center py-4">Loading GitHub activity...</div>}>
-                    <GithubContributions username="amalu-sajeev-me" />
-                </Suspense>
+            <div className="space-y-16">
+                {/* GitHub Activity */}
+                <div className="w-full">
+                    <Suspense fallback={<div className="text-center py-4 text-muted-foreground">Loading GitHub activity...</div>}>
+                        <GithubContributions username="amalu-sajeev-me" />
+                    </Suspense>
+                </div>
+
+                {/* Section Title */}
+                <div className="text-center">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                        Featured <span className="gradient-text">Projects</span>
+                    </h2>
+                    <p className="text-muted-foreground max-w-2xl mx-auto">
+                        A showcase of my recent work and open-source contributions
+                    </p>
+                </div>
+
+                {/* Pinned Projects */}
+                <div className="space-y-6">
+                    <h3 className="text-xl md:text-2xl font-semibold text-secondary flex items-center gap-3">
+                        <span className="w-1.5 h-6 bg-linear-to-b from-primary to-secondary rounded-full" />
+                        Pinned on GitHub
+                    </h3>
+                    <Suspense fallback={
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {[1, 2, 3].map(i => (
+                                <div key={i} className="glass rounded-2xl p-6 h-48 animate-pulse" />
+                            ))}
+                        </div>
+                    }>
+                        <GithubProjects username="amalu-sajeev-me" />
+                    </Suspense>
+                </div>
+
+                {/* Other Projects */}
+                <div className="space-y-6">
+                    <h3 className="text-xl md:text-2xl font-semibold text-secondary flex items-center gap-3">
+                        <span className="w-1.5 h-6 bg-linear-to-b from-secondary to-accent rounded-full" />
+                        Other Projects
+                    </h3>
+                    <OtherProjects />
+                </div>
             </div>
-
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 mt-16 text-center">
-                Featured <span className="gradient-text">Projects</span>
-            </h2>
-
-            <div className="mb-16">
-                <h3 className="text-2xl font-semibold mb-8 text-secondary flex items-center gap-2">
-                    <span className="w-2 h-8 bg-gradient-to-b from-primary to-secondary rounded-full" />
-                    Pinned on GitHub
-                </h3>
-                <Suspense fallback={<div className="text-center py-10">Loading GitHub projects...</div>}>
-                    <GithubProjects username="amalu-sajeev-me" />
-                </Suspense>
-            </div>
-
-            <h3 className="text-2xl font-semibold mb-8 text-secondary flex items-center gap-2">
-                <span className="w-2 h-8 bg-gradient-to-b from-secondary to-accent rounded-full" />
-                Other Projects
-            </h3>
-            <OtherProjects />
         </SectionWrapper>
     );
 }

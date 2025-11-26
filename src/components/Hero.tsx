@@ -10,17 +10,18 @@ export default function Hero() {
             {/* Enhanced Background Gradients */}
             <div className="absolute inset-0 w-full h-full">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "1s" }} />
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[120px] animate-pulse [animation-delay:1s]" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]" />
             </div>
 
-            <div className="relative z-10 px-4 max-w-5xl mx-auto">
+            <div className="relative z-10 px-4 max-w-5xl mx-auto space-y-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
+                    className="text-center"
                 >
-                    <h2 className="text-sm md:text-base text-accent font-semibold tracking-wider uppercase mb-4">
+                    <h2 className="text-xs md:text-sm text-accent font-semibold tracking-widest uppercase mb-6">
                         Welcome to my portfolio
                     </h2>
                 </motion.div>
@@ -29,39 +30,40 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="text-5xl md:text-7xl font-bold mb-6"
+                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight"
                 >
                     Hi, I'm <span className="gradient-text">Aromal Sajeev</span>
                 </motion.h1>
 
-                <motion.p
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
-                    className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10"
+                    className="space-y-4"
                 >
-                    Founding Engineer at <span className="text-primary font-semibold">Asthra AI</span> | Full-Stack Developer
-                    <br />
-                    <span className="text-base md:text-lg mt-2 block">
+                    <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto">
+                        Founding Engineer at <span className="text-primary font-semibold">Asthra AI</span> | Full-Stack Developer
+                    </p>
+                    <p className="text-sm md:text-base lg:text-lg text-muted-foreground/80 max-w-2xl mx-auto">
                         Building the Future of AI-Assisted Regulatory Writing
-                    </span>
-                </motion.p>
+                    </p>
+                </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.6 }}
-                    className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
+                    className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center w-full max-w-md mx-auto sm:max-w-none"
                 >
                     <Link
                         href="#projects"
-                        className="magnetic-btn px-8 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-all shadow-lg glow"
+                        className="magnetic-btn px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-all shadow-lg glow text-center min-h-12 flex items-center justify-center sm:min-w-40"
                     >
                         View Projects
                     </Link>
                     <Link
                         href="#contact"
-                        className="magnetic-btn px-8 py-3 rounded-full glass font-medium hover:bg-secondary/20 transition-all border border-border"
+                        className="magnetic-btn px-8 py-4 rounded-full glass font-medium hover:bg-secondary/20 transition-all border border-border text-center min-h-12 flex items-center justify-center sm:min-w-40"
                     >
                         Contact Me
                     </Link>
@@ -72,7 +74,7 @@ export default function Hero() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
-                    className="flex gap-4 justify-center"
+                    className="flex gap-4 justify-center items-center"
                 >
                     <a
                         href="https://github.com/amalu-sajeev-me"
