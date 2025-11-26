@@ -4,6 +4,7 @@ import "./globals.css";
 import Background3D from "@/components/Background3D";
 import ThemeToggle from "@/components/ThemeToggle";
 import MobileNav from "@/components/MobileNav";
+import CursorTrail from "@/components/CursorTrail";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Background3D />
         <MobileNav />
         <ThemeToggle />
+        <CursorTrail />
         {children}
       </body>
     </html>

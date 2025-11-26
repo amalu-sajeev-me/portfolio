@@ -3,15 +3,53 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 export default function Hero() {
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            if (!sectionRef.current) return;
+            const rect = sectionRef.current.getBoundingClientRect();
+            const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+            const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+            setMousePosition({ x, y });
+        };
+
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, []);
+
     return (
-        <section className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden grid-pattern">
+        <section ref={sectionRef} className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden grid-pattern">
             {/* Enhanced Background Gradients */}
             <div className="absolute inset-0 w-full h-full">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[120px] animate-pulse [animation-delay:1s]" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]" />
+                <motion.div 
+                    className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse"
+                    animate={{
+                        x: mousePosition.x * 80,
+                        y: mousePosition.y * 80
+                    }}
+                    transition={{ type: "spring", stiffness: 30, damping: 15 }}
+                />
+                <motion.div 
+                    className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[120px] animate-pulse [animation-delay:1s]"
+                    animate={{
+                        x: mousePosition.x * -60,
+                        y: mousePosition.y * -60
+                    }}
+                    transition={{ type: "spring", stiffness: 30, damping: 15 }}
+                />
+                <motion.div 
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]"
+                    animate={{
+                        x: mousePosition.x * 50,
+                        y: mousePosition.y * 50
+                    }}
+                    transition={{ type: "spring", stiffness: 30, damping: 15 }}
+                />
             </div>
 
             <div className="relative z-10 px-4 max-w-5xl mx-auto space-y-8">
