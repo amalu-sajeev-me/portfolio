@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import TiltCard from "./ui/TiltCard";
 
 const projects = [
     {
@@ -38,13 +39,13 @@ export default function OtherProjects() {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {projects.map((project, index) => (
-                <motion.div
+                <TiltCard
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    whileHover={{ scale: 1.02 }}
+                    scale={1.02}
                     className="group relative glass rounded-3xl overflow-hidden hover:glow transition-all"
                 >
                     <div className="p-4 sm:p-6 flex flex-col h-full relative z-10">
@@ -83,10 +84,10 @@ export default function OtherProjects() {
                             </Link>
                         </div>
                     </div>
-                    
+
                     {/* Gradient overlay on hover */}
                     <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </motion.div>
+                </TiltCard>
             ))}
         </div>
     );

@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import GithubProjects from "./GithubProjects";
 import GithubContributions from "./GithubContributions";
 import OtherProjects from "./OtherProjects";
+import ParallaxSection from "./ui/ParallaxSection";
 
 export default function Projects() {
     return (
@@ -16,14 +17,14 @@ export default function Projects() {
                 </div>
 
                 {/* Section Title */}
-                <div className="text-center">
+                <ParallaxSection offset={30} className="text-center">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                         Featured <span className="gradient-text">Projects</span>
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
                         A showcase of my recent work and open-source contributions
                     </p>
-                </div>
+                </ParallaxSection>
 
                 {/* Pinned Projects */}
                 <div className="space-y-6">

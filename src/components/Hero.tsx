@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -22,11 +22,15 @@ export default function Hero() {
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
 
+    const { scrollY } = useScroll();
+    const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+    const scale = useTransform(scrollY, [0, 300], [1, 0.9]);
+
     return (
-        <section ref={sectionRef} className="relative min-h-screen flex flex-col justify-center items-center text-center overflow-hidden grid-pattern">
+        <section ref={sectionRef} className="relative min-h-screen flex flex-col justify-center items-center text-center grid-pattern">
             {/* Enhanced Background Gradients */}
             <div className="absolute inset-0 w-full h-full">
-                <motion.div 
+                <motion.div
                     className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse"
                     animate={{
                         x: mousePosition.x * 80,
@@ -34,7 +38,7 @@ export default function Hero() {
                     }}
                     transition={{ type: "spring", stiffness: 30, damping: 15 }}
                 />
-                <motion.div 
+                <motion.div
                     className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[120px] animate-pulse [animation-delay:1s]"
                     animate={{
                         x: mousePosition.x * -60,
@@ -42,7 +46,7 @@ export default function Hero() {
                     }}
                     transition={{ type: "spring", stiffness: 30, damping: 15 }}
                 />
-                <motion.div 
+                <motion.div
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[100px]"
                     animate={{
                         x: mousePosition.x * 50,
@@ -52,7 +56,10 @@ export default function Hero() {
                 />
             </div>
 
-            <div className="relative z-10 px-4 max-w-5xl mx-auto space-y-8">
+            <motion.div
+                style={{ opacity, scale }}
+                className="relative z-10 px-4 max-w-5xl mx-auto space-y-8"
+            >
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -140,7 +147,7 @@ export default function Hero() {
                         <Mail className="w-5 h-5" />
                     </a>
                 </motion.div>
-            </div>
+            </motion.div>
 
             <motion.div
                 initial={{ opacity: 0 }}

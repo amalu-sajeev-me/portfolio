@@ -1,6 +1,7 @@
 import { getPinnedRepos } from "@/lib/github";
 import { Star, GitFork, ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
+import TiltCard from "./ui/TiltCard";
 
 interface GithubProjectsProps {
     username: string;
@@ -22,9 +23,10 @@ export default async function GithubProjects({ username }: GithubProjectsProps) 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {repos.map((repo, index) => (
-                <div
+                <TiltCard
                     key={repo.name}
-                    className="group flex flex-col h-full glass rounded-2xl p-4 sm:p-6 hover:scale-[1.02] transition-all glow hover:glow-secondary"
+                    className="group flex flex-col h-full glass rounded-2xl p-4 sm:p-6 transition-all glow hover:glow-secondary"
+                    scale={1.02}
                 >
                     <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-2 text-primary">
@@ -67,7 +69,7 @@ export default async function GithubProjects({ username }: GithubProjectsProps) 
                             </div>
                         </div>
                     </div>
-                </div>
+                </TiltCard>
             ))}
         </div>
     );
