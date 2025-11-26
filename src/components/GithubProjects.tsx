@@ -7,7 +7,9 @@ interface GithubProjectsProps {
 }
 
 export default async function GithubProjects({ username }: GithubProjectsProps) {
+    console.log('[GithubProjects] Fetching repos for:', username);
     const repos = await getPinnedRepos(username);
+    console.log('[GithubProjects] Received repos:', repos.length, repos);
 
     if (repos.length === 0) {
         return (
