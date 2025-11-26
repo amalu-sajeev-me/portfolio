@@ -22,10 +22,10 @@ export default function Skills() {
     return (
         <SectionWrapper id="skills" className="grid-pattern">
             <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                <h2 className="section-title text-3xl md:text-4xl lg:text-5xl mb-6">
                     Technical <span className="gradient-text">Skills</span>
                 </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
+                <p className="section-subtitle text-muted-foreground mx-auto">
                     Technologies and tools I work with
                 </p>
             </div>
@@ -40,13 +40,13 @@ export default function Skills() {
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         className="glass p-6 rounded-2xl hover:scale-[1.02] transition-all glow"
                     >
-                        <h3 className="text-xl font-semibold mb-4 text-secondary">{category}</h3>
+                        <h3 className="card-title text-xl mb-5 text-secondary">{category}</h3>
                         <div className="flex flex-wrap gap-2">
                             {items.map((skill) => (
                                 <motion.span
                                     key={skill}
-                                    whileHover={{ scale: 1.1 }}
-                                    className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium hover:bg-primary/20 transition-colors cursor-default border border-primary/20"
+                                    whileHover={{ scale: 1.05 }}
+                                    className="tech-text px-3 py-1.5 bg-primary/10 text-primary rounded-full hover:bg-primary/20 transition-colors cursor-default border border-primary/20"
                                 >
                                     {skill}
                                 </motion.span>

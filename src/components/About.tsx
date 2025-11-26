@@ -52,13 +52,13 @@ export default function About() {
                 className="max-w-5xl mx-auto space-y-12"
             >
                 <div className="text-center">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                    <h2 className="section-title text-3xl md:text-4xl lg:text-5xl mb-6">
                         About <span className="gradient-text">Me</span>
                     </h2>
                 </div>
 
                 <div className="glass rounded-3xl p-8 md:p-10 glow">
-                    <p className="text-base md:text-lg text-foreground leading-relaxed text-center md:text-left">
+                    <p className="body-text text-base md:text-lg text-foreground text-center md:text-left">
                         Experienced full-stack developer with a proven track record as a founding engineer, specializing in architecting scalable, AI-driven regulatory writing systems. Skilled in modern JavaScript frameworks, AWS cloud services, and real-time data processing, I contribute to product strategy and technical vision for startup growth. Adept at leading development efforts from concept to deployment, with strong communication and collaboration skills for dynamic, innovative teams.
                     </p>
                 </div>
@@ -67,24 +67,24 @@ export default function About() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
                     <TiltCard delay={0.2}>
                         <Code2 className="w-8 h-8 text-primary mb-4" />
-                        <h3 className="text-lg font-semibold mb-2">Full-Stack Expert</h3>
-                        <p className="text-sm text-muted-foreground">
+                        <h3 className="card-title text-lg mb-3">Full-Stack Expert</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
                             Modern JavaScript frameworks, cloud services, and scalable architecture
                         </p>
                     </TiltCard>
 
                     <TiltCard delay={0.3}>
                         <Rocket className="w-8 h-8 text-secondary mb-4" />
-                        <h3 className="text-lg font-semibold mb-2">Founding Engineer</h3>
-                        <p className="text-sm text-muted-foreground">
+                        <h3 className="card-title text-lg mb-3">Founding Engineer</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
                             Building products from 0 to 1 with strategic technical vision
                         </p>
                     </TiltCard>
 
                     <TiltCard delay={0.4}>
                         <Users className="w-8 h-8 text-accent mb-4" />
-                        <h3 className="text-lg font-semibold mb-2">Team Leadership</h3>
-                        <p className="text-sm text-muted-foreground">
+                        <h3 className="card-title text-lg mb-3">Team Leadership</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">
                             Strong collaboration and communication in dynamic teams
                         </p>
                     </TiltCard>

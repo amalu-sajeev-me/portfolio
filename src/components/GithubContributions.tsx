@@ -29,8 +29,8 @@ export default async function GithubContributions({ username }: GithubContributi
     return (
         <div className="glass rounded-2xl p-4 md:p-6 glow">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
-                <h3 className="text-lg md:text-xl font-semibold gradient-text">GitHub Activity</h3>
-                <span className="text-xs sm:text-sm text-muted-foreground">
+                <h3 className="card-title text-lg md:text-xl gradient-text">GitHub Activity</h3>
+                <span className="tech-text text-muted-foreground">
                     <span className="font-semibold text-primary">{data.totalContributions}</span> contributions this year
                 </span>
             </div>

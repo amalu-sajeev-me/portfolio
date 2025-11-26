@@ -18,17 +18,17 @@ export default function Projects() {
 
                 {/* Section Title */}
                 <ParallaxSection offset={30} className="text-center">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                    <h2 className="section-title text-3xl md:text-4xl lg:text-5xl mb-6">
                         Featured <span className="gradient-text">Projects</span>
                     </h2>
-                    <p className="text-muted-foreground max-w-2xl mx-auto">
+                    <p className="section-subtitle text-muted-foreground mx-auto">
                         A showcase of my recent work and open-source contributions
                     </p>
                 </ParallaxSection>
 
                 {/* Pinned Projects */}
                 <div className="space-y-6">
-                    <h3 className="text-xl md:text-2xl font-semibold text-secondary flex items-center gap-3">
+                    <h3 className="card-title text-xl md:text-2xl text-secondary flex items-center gap-3">
                         <span className="w-1.5 h-6 bg-linear-to-b from-primary to-secondary rounded-full" />
                         Pinned on GitHub
                     </h3>
@@ -45,7 +45,7 @@ export default function Projects() {
 
                 {/* Other Projects */}
                 <div className="space-y-6">
-                    <h3 className="text-xl md:text-2xl font-semibold text-secondary flex items-center gap-3">
+                    <h3 className="card-title text-xl md:text-2xl text-secondary flex items-center gap-3">
                         <span className="w-1.5 h-6 bg-linear-to-b from-secondary to-accent rounded-full" />
                         Other Projects
                     </h3>

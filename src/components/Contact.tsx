@@ -21,10 +21,10 @@ export default function Contact() {
                 
                 <div className="relative z-10 space-y-8">
                     <div>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                        <h2 className="section-title text-3xl md:text-4xl lg:text-5xl mb-6">
                             Let's <span className="gradient-text">Connect</span>
                         </h2>
-                        <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
+                        <p className="section-subtitle text-muted-foreground text-base md:text-lg mx-auto">
                             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
                         </p>
                     </div>
@@ -37,7 +37,7 @@ export default function Contact() {
                             <div className="p-4 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 min-h-[56px] min-w-[56px] flex items-center justify-center">
                                 <Mail className="w-6 h-6" />
                             </div>
-                            <span className="text-muted-foreground group-hover:text-foreground transition-colors text-sm text-center break-words max-w-full">
+                            <span className="tech-text text-muted-foreground group-hover:text-foreground transition-colors text-center break-words max-w-full">
                                 amalu.sajeev.me@gmail.com
                             </span>
                         </Link>

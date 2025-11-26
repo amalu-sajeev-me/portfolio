@@ -31,7 +31,7 @@ export default async function GithubProjects({ username }: GithubProjectsProps) 
                     <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-2 text-primary">
                             <Github className="w-5 h-5" />
-                            <span className="font-semibold truncate">{repo.name}</span>
+                            <span className="card-title truncate">{repo.name}</span>
                         </div>
                         <Link
                             href={repo.url}
@@ -42,7 +42,7 @@ export default async function GithubProjects({ username }: GithubProjectsProps) 
                         </Link>
                     </div>
 
-                    <p className="text-sm text-foreground/80 mb-6 grow line-clamp-3">
+                    <p className="text-sm text-foreground/80 mb-6 grow line-clamp-3 leading-relaxed">
                         {repo.description || "No description available"}
                     </p>
 

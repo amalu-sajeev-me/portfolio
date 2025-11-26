@@ -49,10 +49,10 @@ export default function OtherProjects() {
                     className="group relative glass rounded-3xl overflow-hidden hover:glow transition-all"
                 >
                     <div className="p-4 sm:p-6 flex flex-col h-full relative z-10">
-                        <h3 className="text-lg sm:text-xl font-bold mb-2 gradient-text">
+                        <h3 className="card-title text-lg sm:text-xl mb-3 gradient-text">
                             {project.title}
                         </h3>
-                        <p className="text-sm sm:text-base text-foreground/80 mb-4 grow leading-relaxed">
+                        <p className="body-text text-sm sm:text-base text-foreground/80 mb-4 grow">
                             {project.description}
                         </p>
 
@@ -60,7 +60,7 @@ export default function OtherProjects() {
                             {project.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+                                    className="tech-text px-3 py-1.5 rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
                                 >
                                     {tag}
                                 </span>
