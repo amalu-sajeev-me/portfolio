@@ -2,6 +2,7 @@ import { initializeApp, getApps } from "firebase/app";
 import { getAuth, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
+import { getMessaging, getToken, onMessage, Messaging } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -32,5 +33,65 @@ export const githubProvider = new GithubAuthProvider();
 
 // Analytics (only in browser)
 export const analytics = typeof window !== "undefined" ? getAnalytics(app) : null;
+
+// Firebase Cloud Messaging (only in browser)
+let messaging: Messaging | null = null;
+
+export function getFirebaseMessaging(): Messaging | null {
+  if (typeof window === "undefined") return null;
+  
+  if (!messaging) {
+    try {
+      messaging = getMessaging(app);
+    } catch (error) {
+      console.error("Failed to initialize Firebase Messaging:", error);
+      return null;
+    }
+  }
+  return messaging;
+}
+
+// Request notification permission and get FCM token
+export async function requestNotificationPermission(): Promise<string | null> {
+  if (typeof window === "undefined") return null;
+  
+  try {
+    const permission = await Notification.requestPermission();
+    if (permission !== "granted") {
+      console.log("Notification permission denied");
+      return null;
+    }
+
+    const fcmMessaging = getFirebaseMessaging();
+    if (!fcmMessaging) return null;
+
+    const vapidKey = process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY;
+    if (!vapidKey) {
+      console.error("VAPID key not configured");
+      return null;
+    }
+
+    // Register service worker first
+    const registration = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
+    
+    const token = await getToken(fcmMessaging, {
+      vapidKey,
+      serviceWorkerRegistration: registration,
+    });
+    
+    return token;
+  } catch (error) {
+    console.error("Failed to get notification permission:", error);
+    return null;
+  }
+}
+
+// Listen for foreground messages
+export function onForegroundMessage(callback: (payload: unknown) => void) {
+  const fcmMessaging = getFirebaseMessaging();
+  if (!fcmMessaging) return () => {};
+  
+  return onMessage(fcmMessaging, callback);
+}
 
 export default app;

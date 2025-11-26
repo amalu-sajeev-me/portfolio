@@ -6,6 +6,7 @@ import { Menu, X, Home, User, Briefcase, Code, FolderGit2, Mail, Shield, BookOpe
 import Link from "next/link";
 import LoginButton from "./LoginButton";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
+import { useNotifications } from "./NotificationProvider";
 
 const navItems = [
     { name: "Home", href: "#", icon: Home },
@@ -21,6 +22,7 @@ export default function MobileNav() {
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
     const { isAdmin } = useIsAdmin();
+    const { unreadCount } = useNotifications();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -102,10 +104,15 @@ export default function MobileNav() {
                 {isAdmin && (
                     <Link
                         href="/admin"
-                        className="glass rounded-full px-4 py-2 hover:bg-primary/20 transition-all flex items-center gap-2"
+                        className="glass rounded-full px-4 py-2 hover:bg-primary/20 transition-all flex items-center gap-2 relative"
                     >
                         <Shield className="w-4 h-4 text-primary" />
                         <span className="text-sm font-medium">Admin</span>
+                        {unreadCount > 0 && (
+                            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                                {unreadCount > 9 ? "9+" : unreadCount}
+                            </span>
+                        )}
                     </Link>
                 )}
                 <LoginButton />
@@ -140,10 +147,15 @@ export default function MobileNav() {
                                             <Link
                                                 href="/admin"
                                                 onClick={() => setIsOpen(false)}
-                                                className="glass rounded-full p-2 hover:bg-primary/20 transition-all"
+                                                className="glass rounded-full p-2 hover:bg-primary/20 transition-all relative"
                                                 aria-label="Admin"
                                             >
                                                 <Shield className="w-5 h-5 text-primary" />
+                                                {unreadCount > 0 && (
+                                                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
+                                                        {unreadCount > 9 ? "9+" : unreadCount}
+                                                    </span>
+                                                )}
                                             </Link>
                                         )}
                                         <LoginButton />

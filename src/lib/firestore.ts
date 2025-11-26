@@ -192,3 +192,75 @@ export async function updateComment(id: string, content: string) {
     updatedAt: serverTimestamp(),
   });
 }
+
+// ============ MESSAGES ============
+
+export interface Message {
+  id?: string;
+  name: string;
+  email: string;
+  message: string;
+  uid: string;
+  photoURL?: string;
+  read: boolean;
+  createdAt: Timestamp;
+}
+
+const MESSAGES_COLLECTION = "messages";
+
+// Create a new message (from contact form)
+export async function createMessage(message: Omit<Message, "id" | "read" | "createdAt">) {
+  const docRef = await addDoc(collection(db, MESSAGES_COLLECTION), {
+    ...message,
+    read: false,
+    createdAt: serverTimestamp(),
+  });
+  return docRef.id;
+}
+
+// Get all messages (admin)
+export async function getAllMessages(): Promise<Message[]> {
+  const q = query(collection(db, MESSAGES_COLLECTION), orderBy("createdAt", "desc"));
+  
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as Message[];
+}
+
+// Mark message as read
+export async function markMessageAsRead(id: string, read: boolean = true) {
+  const docRef = doc(db, MESSAGES_COLLECTION, id);
+  await updateDoc(docRef, { read });
+}
+
+// Delete a message
+export async function deleteMessage(id: string) {
+  const docRef = doc(db, MESSAGES_COLLECTION, id);
+  await deleteDoc(docRef);
+}
+
+// ============ FCM TOKENS ============
+
+const FCM_TOKENS_COLLECTION = "admin_fcm_tokens";
+
+// Save FCM token for admin notifications
+export async function saveFCMToken(userId: string, token: string) {
+  const docRef = doc(db, FCM_TOKENS_COLLECTION, userId);
+  await updateDoc(docRef, { token, updatedAt: serverTimestamp() }).catch(async () => {
+    // Document doesn't exist, create it
+    await addDoc(collection(db, FCM_TOKENS_COLLECTION), {
+      userId,
+      token,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+    });
+  });
+}
+
+// Get all FCM tokens
+export async function getAllFCMTokens(): Promise<string[]> {
+  const querySnapshot = await getDocs(collection(db, FCM_TOKENS_COLLECTION));
+  return querySnapshot.docs.map((doc) => doc.data().token);
+}

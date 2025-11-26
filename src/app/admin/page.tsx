@@ -2,14 +2,16 @@
 
 import { useAuth } from "@/hooks/useAuth";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
+import { useNotifications } from "@/components/NotificationProvider";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FileText, Settings, ArrowLeft } from "lucide-react";
+import { FileText, Settings, ArrowLeft, MessageSquare } from "lucide-react";
 
 export default function AdminPage() {
   const { user, loading, signInWithGoogle, signOut } = useAuth();
   const { isAdmin } = useIsAdmin();
+  const { unreadCount } = useNotifications();
 
   if (loading) {
     return (
@@ -101,6 +103,24 @@ export default function AdminPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Link href="/admin/messages">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="glass p-6 rounded-2xl cursor-pointer hover:ring-2 hover:ring-primary/30 transition-all h-full relative"
+            >
+              <MessageSquare className="w-8 h-8 text-green-500 mb-4" />
+              <h3 className="card-title text-xl mb-2">Messages</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                View and respond to messages from visitors.
+              </p>
+              {unreadCount > 0 && (
+                <span className="absolute top-4 right-4 bg-red-500 text-white text-sm px-2 py-0.5 rounded-full">
+                  {unreadCount} new
+                </span>
+              )}
+            </motion.div>
+          </Link>
+
           <Link href="/admin/blog/new">
             <motion.div
               whileHover={{ scale: 1.02 }}

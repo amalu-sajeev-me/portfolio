@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Mail, Linkedin, Phone, MapPin } from "lucide-react";
 import SectionWrapper from "./ui/SectionWrapper";
 import Link from "next/link";
+import ContactForm from "./ContactForm";
 
 export default function Contact() {
     return (
@@ -27,6 +28,16 @@ export default function Contact() {
                         <p className="section-subtitle text-muted-foreground text-base md:text-lg mx-auto">
                             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
                         </p>
+                    </div>
+
+                    {/* Contact Form */}
+                    <ContactForm />
+
+                    {/* Divider */}
+                    <div className="flex items-center gap-4 max-w-lg mx-auto">
+                        <div className="flex-1 h-px bg-border" />
+                        <span className="text-muted-foreground text-sm">or reach out directly</span>
+                        <div className="flex-1 h-px bg-border" />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-4xl mx-auto">

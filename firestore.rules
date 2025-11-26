@@ -21,5 +21,18 @@ service cloud.firestore {
       allow update: if request.auth != null && 
                        resource.data.author.uid == request.auth.uid;
     }
+    
+    // Messages from contact form (requires sign-in for verified email)
+    match /messages/{messageId} {
+      allow create: if request.auth != null; // Must be signed in to send a message
+      allow read, update, delete: if isAdmin(); // Only admin can view/manage messages
+    }
+    
+    // FCM tokens for push notifications
+    match /admin_fcm_tokens/{tokenId} {
+      allow read: if isAdmin();
+      allow create, update: if request.auth != null && isAdmin();
+      allow delete: if isAdmin();
+    }
   }
 }
