@@ -59,7 +59,7 @@ export default function About() {
 
                 <div className="glass rounded-3xl p-8 md:p-10 glow">
                     <p className="body-text text-base md:text-lg text-foreground text-center md:text-left">
-                        Experienced full-stack developer with a proven track record as a founding engineer, specializing in architecting scalable, AI-driven regulatory writing systems. Skilled in modern JavaScript frameworks, AWS cloud services, and real-time data processing, I contribute to product strategy and technical vision for startup growth. Adept at leading development efforts from concept to deployment, with strong communication and collaboration skills for dynamic, innovative teams.
+                        I&apos;m <strong>Amalu Sajeev</strong> (also known as <strong>Aromal Sajeev</strong>), an experienced full-stack developer with a proven track record as a founding engineer, specializing in architecting scalable, AI-driven regulatory writing systems. Based in <strong>Hyderabad, India</strong>, I&apos;m skilled in modern JavaScript frameworks, AWS cloud services, and real-time data processing. I contribute to product strategy and technical vision for startup growth. Adept at leading development efforts from concept to deployment, with strong communication and collaboration skills for dynamic, innovative teams.
                     </p>
                 </div>
 
