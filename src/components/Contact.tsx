@@ -13,11 +13,16 @@ export default function Contact() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="bg-gradient-to-br from-card to-secondary/5 rounded-3xl p-8 md:p-12 border border-border text-center"
+                className="glass rounded-3xl p-8 md:p-12 text-center glow relative overflow-hidden"
             >
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                    Let's <span className="text-primary">Connect</span>
-                </h2>
+                {/* Background gradient orbs */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/10 rounded-full blur-[100px]" />
+                
+                <div className="relative z-10">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                        Let's <span className="gradient-text">Connect</span>
+                    </h2>
                 <p className="text-muted-foreground text-lg mb-10 max-w-2xl mx-auto">
                     I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
                 </p>
@@ -65,6 +70,7 @@ export default function Contact() {
                             Hyderabad, India
                         </span>
                     </div>
+                </div>
                 </div>
             </motion.div>
         </SectionWrapper>

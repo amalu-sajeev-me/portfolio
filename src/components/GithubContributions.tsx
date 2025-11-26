@@ -29,11 +29,11 @@ export default async function GithubContributions({ username }: GithubContributi
     const weekdays = ['Mon', 'Wed', 'Fri'];
 
     return (
-        <div className="bg-card rounded-xl border border-border p-4 md:p-6">
+        <div className="glass rounded-2xl p-4 md:p-6 glow">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
-                <h3 className="text-lg md:text-xl font-semibold">GitHub Activity</h3>
+                <h3 className="text-lg md:text-xl font-semibold gradient-text">GitHub Activity</h3>
                 <span className="text-xs sm:text-sm text-muted-foreground">
-                    {data.totalContributions} contributions this year
+                    <span className="font-semibold text-primary">{data.totalContributions}</span> contributions this year
                 </span>
             </div>
             
