@@ -35,6 +35,9 @@ const projects = [
     },
 ];
 
+import { Suspense } from "react";
+import GithubProjects from "./GithubProjects";
+
 export default function Projects() {
     return (
         <SectionWrapper id="projects">
@@ -42,6 +45,19 @@ export default function Projects() {
                 Featured <span className="text-primary">Projects</span>
             </h2>
 
+            <div className="mb-16">
+                <h3 className="text-2xl font-semibold mb-8 text-secondary">
+                    Pinned on GitHub
+                </h3>
+                <Suspense fallback={<div className="text-center py-10">Loading GitHub projects...</div>}>
+                    {/* Replace 'amalu-sajeev' with actual username or env var */}
+                    <GithubProjects username="amalu-sajeev-me" />
+                </Suspense>
+            </div>
+
+            <h3 className="text-2xl font-semibold mb-8 text-secondary">
+                Other Projects
+            </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {projects.map((project, index) => (
                     <motion.div
