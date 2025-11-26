@@ -6,7 +6,7 @@ import { useNotifications } from "@/components/NotificationProvider";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FileText, Settings, ArrowLeft, MessageSquare } from "lucide-react";
+import { FileText, Settings, ArrowLeft, MessageSquare, FileUp } from "lucide-react";
 
 export default function AdminPage() {
   const { user, loading, signInWithGoogle, signOut } = useAuth();
@@ -118,6 +118,19 @@ export default function AdminPage() {
                   {unreadCount} new
                 </span>
               )}
+            </motion.div>
+          </Link>
+
+          <Link href="/admin/resume">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="glass p-6 rounded-2xl cursor-pointer hover:ring-2 hover:ring-primary/30 transition-all h-full"
+            >
+              <FileUp className="w-8 h-8 text-amber-500 mb-4" />
+              <h3 className="card-title text-xl mb-2">Resume</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Upload and manage your PDF resume for visitors to download.
+              </p>
             </motion.div>
           </Link>
 

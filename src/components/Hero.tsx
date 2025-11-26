@@ -1,12 +1,14 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Mail, FileText } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import ResumeModal from "./ResumeModal";
 
 export default function Hero() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [isResumeOpen, setIsResumeOpen] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
@@ -147,6 +149,13 @@ export default function Hero() {
                     >
                         <Mail className="w-5 h-5" />
                     </a>
+                    <button
+                        onClick={() => setIsResumeOpen(true)}
+                        className="p-3 rounded-full glass hover:bg-green-500/20 transition-all group"
+                        aria-label="View Resume"
+                    >
+                        <FileText className="w-5 h-5 group-hover:text-green-500 transition-colors" />
+                    </button>
                 </motion.div>
             </motion.div>
 
@@ -158,6 +167,9 @@ export default function Hero() {
             >
                 <ArrowDown className="text-muted-foreground w-6 h-6" />
             </motion.div>
+
+            {/* Resume Modal */}
+            <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
         </section>
     );
 }

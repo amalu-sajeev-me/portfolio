@@ -34,5 +34,11 @@ service cloud.firestore {
       allow create, update: if request.auth != null && isAdmin();
       allow delete: if isAdmin();
     }
+    
+    // Resume metadata - public read, admin write
+    match /settings/{docId} {
+      allow read: if true; // Anyone can read resume info for downloading
+      allow write: if isAdmin(); // Only admin can upload/update resume
+    }
   }
 }
