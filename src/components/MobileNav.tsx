@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, User, Briefcase, Code, FolderGit2, Mail } from "lucide-react";
+import { Menu, X, Home, User, Briefcase, Code, FolderGit2, Mail, Shield, BookOpen } from "lucide-react";
 import Link from "next/link";
+import LoginButton from "./LoginButton";
+import { useIsAdmin } from "@/hooks/useIsAdmin";
 
 const navItems = [
     { name: "Home", href: "#", icon: Home },
@@ -12,15 +14,19 @@ const navItems = [
     { name: "Skills", href: "#skills", icon: Code },
     { name: "Projects", href: "#projects", icon: FolderGit2 },
     { name: "Contact", href: "#contact", icon: Mail },
+    { name: "Blog", href: "/blog", icon: BookOpen, isPage: true },
 ];
 
 export default function MobileNav() {
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
+    const { isAdmin } = useIsAdmin();
 
     useEffect(() => {
         const handleScroll = () => {
-            const sections = navItems.map(item => item.href.substring(1) || "home");
+            const sections = navItems
+                .filter(item => !item.isPage)
+                .map(item => item.href.substring(1) || "home");
             const current = sections.find(section => {
                 const element = section === "home" 
                     ? document.body 
@@ -39,9 +45,9 @@ export default function MobileNav() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const handleNavClick = (href: string) => {
+    const handleNavClick = (href: string, isPage?: boolean) => {
         setIsOpen(false);
-        if (href === "#") {
+        if (!isPage && href === "#") {
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
     };
@@ -68,12 +74,12 @@ export default function MobileNav() {
             <nav className="hidden lg:block fixed left-8 top-1/2 -translate-y-1/2 z-40">
                 <div className="glass rounded-full p-3 space-y-4">
                     {navItems.map((item) => {
-                        const isActive = activeSection === (item.href.substring(1) || "home");
+                        const isActive = !item.isPage && activeSection === (item.href.substring(1) || "home");
                         return (
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                onClick={() => handleNavClick(item.href)}
+                                onClick={() => handleNavClick(item.href, item.isPage)}
                                 className={`group relative block p-2 rounded-full transition-all ${
                                     isActive 
                                         ? "bg-primary text-primary-foreground scale-110" 
@@ -90,6 +96,20 @@ export default function MobileNav() {
                     })}
                 </div>
             </nav>
+
+            {/* Login Button - Desktop */}
+            <div className="hidden lg:flex fixed right-20 top-8 z-40 items-center gap-3">
+                {isAdmin && (
+                    <Link
+                        href="/admin"
+                        className="glass rounded-full px-4 py-2 hover:bg-primary/20 transition-all flex items-center gap-2"
+                    >
+                        <Shield className="w-4 h-4 text-primary" />
+                        <span className="text-sm font-medium">Admin</span>
+                    </Link>
+                )}
+                <LoginButton />
+            </div>
 
             {/* Mobile Menu Overlay */}
             <AnimatePresence>
@@ -111,12 +131,26 @@ export default function MobileNav() {
                             className="fixed left-0 top-0 bottom-0 w-64 sm:w-72 glass border-r border-border z-40 lg:hidden overflow-y-auto"
                         >
                             <div className="p-6 sm:p-8 mt-16">
-                                <h2 className="text-xl sm:text-2xl font-bold mb-8 gradient-text">
-                                    Navigation
-                                </h2>
-                                <div className="space-y-2">
-                                    {navItems.map((item, index) => {
-                                        const isActive = activeSection === (item.href.substring(1) || "home");
+                                <div className="flex items-center justify-between mb-8">
+                                    <h2 className="text-xl sm:text-2xl font-bold gradient-text">
+                                        Navigation
+                                    </h2>
+                                    <div className="flex items-center gap-2 lg:hidden">
+                                        {isAdmin && (
+                                            <Link
+                                                href="/admin"
+                                                onClick={() => setIsOpen(false)}
+                                                className="glass rounded-full p-2 hover:bg-primary/20 transition-all"
+                                                aria-label="Admin"
+                                            >
+                                                <Shield className="w-5 h-5 text-primary" />
+                                            </Link>
+                                        )}
+                                        <LoginButton />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">{navItems.map((item, index) => {
+                                        const isActive = !item.isPage && activeSection === (item.href.substring(1) || "home");
                                         return (
                                             <motion.div
                                                 key={item.name}
@@ -126,7 +160,7 @@ export default function MobileNav() {
                                             >
                                                 <Link
                                                     href={item.href}
-                                                    onClick={() => handleNavClick(item.href)}
+                                                    onClick={() => handleNavClick(item.href, item.isPage)}
                                                     className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-all ${
                                                         isActive
                                                             ? "bg-primary text-primary-foreground font-semibold scale-105"
